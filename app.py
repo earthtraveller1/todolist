@@ -161,9 +161,27 @@ def index() -> str:
                 .add_child(
                     Element("p")
                     .inner_text("This is a test!")
+                    .hx_target("#test-target")
+                    .hx_get("/neng")
+                    .hx_trigger("click")
                     .class_names("font-sans text-base text-center")
+                )
+                .add_child(
+                    Element("div")
+                    .id("test-target")
                 )
             )
         )
 
     return output.render()
+
+
+@app.route("/neng")
+def neng() -> str:
+    result =\
+        Element("p")\
+        .class_names("font-sans text-base text-center text-red-600")\
+        .id("test-target")\
+        .inner_text("Neng Li is the President of China!")
+
+    return result.render()
