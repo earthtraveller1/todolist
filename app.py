@@ -128,6 +128,25 @@ def index() -> str:
                     )
                 )
                 .add_child(
+                    Element("script")
+                    .property("src", "https://cdn.tailwindcss.com")
+                )
+                .add_child(
+                    Element("script")
+                    .property(
+                        "src",
+                        "https://unpkg.com/htmx.org@1.9.4"
+                    )
+                    .property(
+                        "integrity",
+                        "sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV"
+                    )
+                    .property(
+                        "crossorigin",
+                        "anyonymous"
+                    )
+                )
+                .add_child(
                     Element("title")
                     .inner_text("Hello World!")
                 )
