@@ -29,6 +29,46 @@ class Element:
         self._flags.append(flag)
         return self
 
+    def class_names(self, classes: str) -> 'Element':
+        self.property("class", classes)
+        return self
+
+    def id(self, id: str) -> 'Element':
+        self.property("id", id)
+        return self
+
+    def hx_get(self, url: str) -> 'Element':
+        self.property("hx-get", url)
+        return self
+
+    def hx_post(self, url: str) -> 'Element':
+        self.property("hx-post", url)
+        return self
+
+    def hx_put(self, url: str) -> 'Element':
+        self.property("hx-put", url)
+        return self
+
+    def hx_delete(self, url: str) -> 'Element':
+        self.property("hx-delete", url)
+        return self
+
+    def hx_patch(self, url: str) -> 'Element':
+        self.property("hx-patch", url)
+        return self
+
+    def hx_trigger(self, trigger: str) -> 'Element':
+        self.property("hx-trigger", trigger)
+        return self
+
+    def hx_target(self, target: str) -> 'Element':
+        self.property("hx-target", target)
+        return self
+
+    def hx_swap(self, swap: str) -> 'Element':
+        self.property("hx-swap", swap)
+        return self
+
     def add_child(self, child: 'Element') -> 'Element':
         self._children.append(child)
         return self
