@@ -5,7 +5,7 @@ from typing import Dict, List
 
 
 class Element:
-    def __init__(self, name: str):
+    def __init__(self, name: str = ""):
         self._name: str = name
         self._properties: Dict[str, str] = {}
         self._flags: List[str] = []
@@ -29,20 +29,25 @@ class Element:
         return self
 
     def render(self) -> str:
-        output = f"<{self._name}"
+        output = ""
 
-        for prop_name, prop in self._properties:
-            output += f" {prop_name}=\"{prop}\""
+        if self._name != "":
+            output += f"<{self._name}"
 
-        for flag in self._flags:
-            output += f" {flag}"
+            for prop_name, prop in self._properties:
+                output += f" {prop_name}=\"{prop}\""
 
-        output += f">{self._inner_text}"
+            for flag in self._flags:
+                output += f" {flag}"
+
+            output += ">"
+
+        output += f"{self._inner_text}"
 
         for child in self._children:
             output += child.render()
 
-        no_close_elements = ["br", "meta", "link", "img", "!DOCTYPE"]
+        no_close_elements = ["", "br", "meta", "link", "img", "!DOCTYPE"]
 
         if self._name not in no_close_elements:
             output += f"</{self._name}>"
