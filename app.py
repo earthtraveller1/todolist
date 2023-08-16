@@ -156,10 +156,12 @@ def index() -> str:
                 .add_child(
                     Element("h1")
                     .inner_text("Hello!")
+                    .class_names("font-sans text-center text-8xl my-8")
                 )
                 .add_child(
                     Element("p")
                     .inner_text("This is a test!")
+                    .class_names("font-sans text-base text-center")
                 )
             )
         )
