@@ -42,7 +42,10 @@ class Element:
         for child in self._children:
             output += child.render()
 
-        output += f"</{self._name}>"
+        no_close_elements = ["br", "meta", "link", "img", "!DOCTYPE"]
+
+        if self._name not in no_close_elements:
+            output += f"</{self._name}>"
 
         return output
 
