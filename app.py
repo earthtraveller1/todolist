@@ -4,6 +4,15 @@ import markupsafe
 from typing import Dict, List
 
 
+def escape_string(input: str) -> str:
+    output = ""
+    for c in input:
+        if c == "\"" or c == "'":
+            output += "\\"
+        output += c
+    return output
+
+
 class Element:
     def __init__(self, name: str = ""):
         self._name: str = name
@@ -13,7 +22,7 @@ class Element:
         self._children: List['Element'] = []
 
     def property(self, prop_name: str, prop: str) -> 'Element':
-        self._properties[prop_name] = markupsafe.escape(prop)
+        self._properties[prop_name] = escape_string(prop)
         return self
 
     def flag(self, flag: str) -> 'Element':
