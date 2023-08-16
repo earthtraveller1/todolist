@@ -182,6 +182,16 @@ def neng() -> str:
         Element("p")\
         .class_names("font-sans text-base text-center text-red-600")\
         .id("test-target")\
+        .hx_get("/neng/empty")\
         .inner_text("Neng Li is the President of China!")
+
+    return result.render()
+
+
+@app.route("/neng/empty")
+def empty_div() -> str:
+    result =\
+        Element("div")\
+        .id("test-target")
 
     return result.render()
