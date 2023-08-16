@@ -43,7 +43,7 @@ class Element:
         if self._name != "":
             output += f"<{self._name}"
 
-            for prop_name, prop in self._properties:
+            for prop_name, prop in self._properties.items():
                 output += f" {prop_name}=\"{prop}\""
 
             for flag in self._flags:
