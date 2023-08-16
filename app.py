@@ -65,8 +65,35 @@ def index() -> str:
         .add_child(Element("!DOCTYPE").flag("html"))\
         .add_child(
             Element("html")
-            .add_child(Element("h1").inner_text("Hello!"))
-            .add_child(Element("p").inner_text("This is a test!"))
+            .add_child(
+                Element("head")
+                .add_child(
+                    Element("meta")
+                    .property("charset", "UTF-8")
+                )
+                .add_child(
+                    Element("meta")
+                    .property("name", "viewport")
+                    .property(
+                        "content", "width=device-width, initial-scale=1.0"
+                    )
+                )
+                .add_child(
+                    Element("title")
+                    .inner_text("Hello World!")
+                )
+            )
+            .add_child(
+                Element("body")
+                .add_child(
+                    Element("h1")
+                    .inner_text("Hello!")
+                )
+                .add_child(
+                    Element("p")
+                    .inner_text("This is a test!")
+                )
+            )
         )
 
     return output.render()
