@@ -1,4 +1,5 @@
 from flask import Flask
+import markupsafe
 
 from typing import Dict, List
 
@@ -11,7 +12,7 @@ class Element:
         self._children: List['Element'] = []
 
     def property(self, prop_name: str, prop: str) -> 'Element':
-        self._properties[prop_name] = prop
+        self._properties[prop_name] = markupsafe.escape(prop)
         return self
 
     def add_child(self, child: 'Element') -> 'Element':
@@ -19,7 +20,7 @@ class Element:
         return self
 
     def inner_text(self, text: str) -> 'Element':
-        self._inner_text = text
+        self._inner_text = markupsafe.escape(text)
         return self
 
     def render(self) -> str:
@@ -28,13 +29,12 @@ class Element:
         for prop_name, prop in self._properties:
             output += f" {prop_name}=\"{prop}\""
 
-        output += f">{self.inner_text}"
+        output += f">{self._inner_text}"
 
-        if len(self._children) != 0:
-            for child in self._children:
-                output += child.render()
+        for child in self._children:
+            output += child.render()
 
-            output += f"</{self._name}>"
+        output += f"</{self._name}>"
 
         return output
 
