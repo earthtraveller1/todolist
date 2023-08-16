@@ -60,8 +60,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def index() -> str:
-    output = Element("html")\
-        .add_child(Element("h1") .inner_text("Hello!"))\
-        .add_child(Element("p").inner_text("This is a test!"))
+    output =\
+        Element()\
+        .add_child(Element("!DOCTYPE").flag("html"))\
+        .add_child(
+            Element("html")
+            .add_child(Element("h1").inner_text("Hello!"))
+            .add_child(Element("p").inner_text("This is a test!"))
+        )
 
     return output.render()
