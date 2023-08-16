@@ -160,7 +160,7 @@ def index() -> str:
                 )
                 .add_child(
                     Element("p")
-                    .inner_text("This is a test!")
+                    .inner_text("Click this!")
                     .hx_target("#test-target")
                     .hx_get("/neng")
                     .hx_trigger("click")
