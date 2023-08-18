@@ -33,7 +33,11 @@ def index() -> str:
                     Element("div")
                     .id("test-target")
                 )
-                .add_child(components.todolist_container())
+                .add_child(
+                    components.todolist_container()
+                    .add_child(components.todolist_item("Neng Li is the President of China", True))
+                    .add_child(components.todolist_item("Shiva is the King of the Universe!", True))
+                )
             )
         )
 
