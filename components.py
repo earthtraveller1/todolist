@@ -44,3 +44,10 @@ def todolist_container() -> Element:
     return\
         Element("div")\
         .class_names("w-80 mx-auto my-16 flex flex-col")
+
+
+def todolist_item(text: str, is_done: bool) -> Element:
+    return\
+        Element("div")\
+        .class_names("bg-lime-900 rounded-lg text-lime-100 mb-8 p-4")\
+        .inner_text(text)
