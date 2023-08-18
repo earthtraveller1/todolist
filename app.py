@@ -1,5 +1,6 @@
 from flask import Flask
 from element import Element
+import components
 
 app = Flask(__name__)
 
@@ -11,43 +12,7 @@ def index() -> str:
         .add_child(Element("!DOCTYPE").flag("html"))\
         .add_child(
             Element("html")
-            .add_child(
-                Element("head")
-                .add_child(
-                    Element("meta")
-                    .property("charset", "UTF-8")
-                )
-                .add_child(
-                    Element("meta")
-                    .property("name", "viewport")
-                    .property(
-                        "content", "width=device-width, initial-scale=1.0"
-                    )
-                )
-                .add_child(
-                    Element("script")
-                    .property("src", "https://cdn.tailwindcss.com")
-                )
-                .add_child(
-                    Element("script")
-                    .property(
-                        "src",
-                        "https://unpkg.com/htmx.org@1.9.4"
-                    )
-                    .property(
-                        "integrity",
-                        "sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV"
-                    )
-                    .property(
-                        "crossorigin",
-                        "anyonymous"
-                    )
-                )
-                .add_child(
-                    Element("title")
-                    .inner_text("Hello World!")
-                )
-            )
+            .add_child(components.head("Hello World"))
             .add_child(
                 Element("body")
                 .add_child(
