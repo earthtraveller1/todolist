@@ -17,12 +17,12 @@ def index() -> str:
                 Element("body")
                 .add_child(
                     Element("h1")
-                    .inner_text("Hello!")
+                    .inner_text("ToDo List")
                     .class_names("font-sans text-center text-8xl my-8")
                 )
                 .add_child(
                     Element("p")
-                    .inner_text("Click this!")
+                    .inner_text("Yes, a ToDo list. I know, right?")
                     .hx_target("#test-target")
                     .hx_get("/neng")
                     .hx_trigger("click")
