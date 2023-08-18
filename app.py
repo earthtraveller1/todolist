@@ -15,10 +15,11 @@ def index() -> str:
             .add_child(components.head("Hello World"))
             .add_child(
                 Element("body")
+                .class_names("bg-slate-900 text-slate-300")
                 .add_child(
                     Element("h1")
                     .inner_text("ToDo List")
-                    .class_names("font-sans text-center text-8xl my-8")
+                    .class_names("font-sans font-bold text-center text-8xl my-8")
                 )
                 .add_child(
                     Element("p")
