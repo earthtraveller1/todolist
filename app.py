@@ -33,6 +33,7 @@ def index() -> str:
                     Element("div")
                     .id("test-target")
                 )
+                .add_child(components.todolist_container())
             )
         )
 

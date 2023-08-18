@@ -38,3 +38,9 @@ def head(title: str) -> Element:
             Element("title")
             .inner_text(title)
         )
+
+
+def todolist_container() -> Element:
+    return\
+        Element("div")\
+        .class_names("w-80 mx-auto my-16 flex flex-col")
