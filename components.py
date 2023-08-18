@@ -36,5 +36,5 @@ def head(title: str) -> Element:
         )\
         .add_child(
             Element("title")
-            .inner_text("Hello World!")
+            .inner_text(title)
         )
