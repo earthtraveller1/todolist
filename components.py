@@ -47,7 +47,13 @@ def todolist_container() -> Element:
 
 
 def todolist_item(text: str, is_done: bool) -> Element:
+    classes = "rounded-lg text-lime-100 mb-8 p-4 select-none"
+    if is_done:
+        classes += " line-through bg-lime-900 hover:bg-lime-700"
+    else:
+        classes += " bg-indigo-900 hover:bg-indigo-700"
+
     return\
         Element("div")\
-        .class_names("bg-lime-900 hover:bg-lime-700 rounded-lg text-lime-100 mb-8 p-4 select-none")\
+        .class_names(classes)\
         .inner_text(text)
