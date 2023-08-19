@@ -57,3 +57,10 @@ def todolist_item(text: str, is_done: bool) -> Element:
         Element("div")\
         .class_names(classes)\
         .inner_text(text)
+
+
+def button(text: str = "Add Item") -> Element:
+    return\
+        Element("button")\
+        .class_names("mx-auto bg-green-900 rounded-md px-5 py-2 hover:bg-green-800")\
+        .inner_text(text)
