@@ -49,9 +49,9 @@ def todolist_container() -> Element:
 def todolist_item(text: str, is_done: bool) -> Element:
     classes = "rounded-lg text-lime-100 mb-8 p-4 select-none"
     if is_done:
-        classes += " line-through bg-lime-900 hover:bg-lime-700"
+        classes += " line-through bg-lime-900 hover:bg-lime-700 active:bg-lime-950"
     else:
-        classes += " bg-indigo-900 hover:bg-indigo-700"
+        classes += " bg-indigo-900 hover:bg-indigo-700 active:bg-indigo-950"
 
     return\
         Element("div")\
@@ -62,5 +62,5 @@ def todolist_item(text: str, is_done: bool) -> Element:
 def button(text: str = "Add Item") -> Element:
     return\
         Element("button")\
-        .class_names("mx-auto bg-green-900 rounded-md px-5 py-2 hover:bg-green-800")\
+        .class_names("mx-auto bg-green-900 rounded-md px-5 py-2 hover:bg-green-800 active:bg-green-950")\
         .inner_text(text)
