@@ -9,30 +9,65 @@ app = Flask(__name__)
 def index() -> str:
     output =\
         Element()\
-        .add_child(Element("!DOCTYPE").flag("html"))\
         .add_child(
-            Element("html")
-            .add_child(components.head("Hello World"))
+            Element(
+                "!DOCTYPE"
+            )
+            .flag(
+                "html"
+            )
+        )\
+        .add_child(
+            Element(
+                "html"
+            )
             .add_child(
-                Element("body")
-                .class_names("bg-slate-900 text-slate-300")
-                .add_child(
-                    Element("h1")
-                    .inner_text("ToDo List")
-                    .class_names("font-sans font-bold text-center text-8xl my-8")
+                components.head(
+                    "Hello World"
+                )
+            )
+            .add_child(
+                Element(
+                    "body"
+                )
+                .class_names(
+                    "bg-slate-900 text-slate-300"
                 )
                 .add_child(
-                    Element("p")
-                    .inner_text("Yes, a ToDo list. I know, right?")
-                    .class_names("font-sans text-base text-center")
+                    Element(
+                        "h1"
+                    )
+                    .inner_text(
+                        "ToDo List"
+                    )
+                    .class_names(
+                        "font-sans font-bold text-center text-8xl my-8"
+                    )
                 )
                 .add_child(
-                    Element("div")
-                    .id("test-target")
+                    Element(
+                        "p"
+                    )
+                    .inner_text(
+                        "Yes, a ToDo list. I know, right?"
+                    )
+                    .class_names(
+                        "font-sans text-base text-center"
+                    )
+                )
+                .add_child(
+                    Element(
+                        "div"
+                    )
+                    .id(
+                        "test-target"
+                    )
                 )
                 .add_child(
                     components.todolist_container()
-                    .id("todolist-container")
+                    .id(
+                        "todolist-container"
+                    )
                     .add_child(
                         components.todolist_item(
                             "Neng Li is the President of China",
