@@ -32,14 +32,34 @@ def index() -> str:
                 )
                 .add_child(
                     components.todolist_container()
-                    .add_child(components.todolist_item("Neng Li is the President of China", False))
-                    .add_child(components.todolist_item("Shiva is the King of the Universe!", True))
-                    .add_child(components.button())
+                    .add_child(
+                        components.todolist_item(
+                            "Neng Li is the President of China",
+                            False
+                        )
+                    )
+                    .add_child(
+                        components.todolist_item(
+                            "Shiva is the King of the Universe!",
+                            True
+                        )
+                    )
+                    .add_child(
+                        components.button()
+                        .hx_get("/neng/newitemform")
+                        .hx_swap("outerHTML")
+                    )
                 )
             )
         )
 
     return output.render()
+
+
+@app.route("/neng/newitemform")
+def new_item_form() -> str:
+    result = components.create_item_form()
+    return result.render()
 
 
 @app.route("/neng/empty")
