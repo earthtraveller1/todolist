@@ -32,6 +32,7 @@ def index() -> str:
                 )
                 .add_child(
                     components.todolist_container()
+                    .id("todolist-container")
                     .add_child(
                         components.todolist_item(
                             "Neng Li is the President of China",
