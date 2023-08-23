@@ -54,7 +54,7 @@ def todolist_item(text: str, is_done: bool) -> Element:
         classes += " bg-indigo-900 hover:bg-indigo-700 active:bg-indigo-950"
 
     return\
-        Element("div")\
+        Element("button")\
         .class_names(classes)\
         .inner_text(text)
 
