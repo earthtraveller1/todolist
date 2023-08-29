@@ -15,16 +15,16 @@ def index() -> str:
             .add_child(components.head("Hello World"))
             .add_child(
                 Element("body")
-                .styles("bg-slate-900 text-slate-300")
+                .styles(["bg-slate-900", "text-slate-300"])
                 .add_child(
                     Element("h1")
                     .inner_text("ToDo List")
-                    .styles("font-sans font-bold text-center text-8xl my-8")
+                    .styles(["font-sans", "font-bold", "text-center", "text-8xl", "my-8"])
                 )
                 .add_child(
                     Element("p")
                     .inner_text("Yes, a ToDo list. I know, right?")
-                    .styles("font-sans text-base text-center")
+                    .styles(["font-sans", "text-base", "text-center"])
                 )
                 .add_child(
                     Element("div")
