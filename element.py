@@ -27,7 +27,7 @@ class Element:
         self._flags.append(flag)
         return self
 
-    def class_names(self, classes: str) -> 'Element':
+    def styles(self, classes: str) -> 'Element':
         self.property("class", classes)
         return self
 
