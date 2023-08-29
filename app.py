@@ -2,6 +2,11 @@ from flask import Flask
 from element import Element
 import components
 
+items = [
+    "Neng Li is the President of China",
+    "Shiva Deshpande is the King of the Universe",
+]
+
 app = Flask(__name__)
 
 
