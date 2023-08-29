@@ -32,22 +32,23 @@ def index() -> str:
                 )
             )
             .add_child(
-                Element(
-                    "body"
-                )
-                .class_names(
-                    "bg-slate-900 text-slate-300"
+                Element("body")
+                .styles(["bg-slate-900", "text-slate-300"])
+                .add_child(
+                    Element("h1")
+                    .inner_text("ToDo List")
+                    .styles([
+                        "font-sans",
+                        "font-bold",
+                        "text-center",
+                        "text-8xl",
+                        "my-8"
+                    ])
                 )
                 .add_child(
-                    Element(
-                        "h1"
-                    )
-                    .inner_text(
-                        "ToDo List"
-                    )
-                    .class_names(
-                        "font-sans font-bold text-center text-8xl my-8"
-                    )
+                    Element("p")
+                    .inner_text("Yes, a ToDo list. I know, right?")
+                    .styles(["font-sans", "text-base", "text-center"])
                 )
                 .add_child(
                     Element(
@@ -56,8 +57,8 @@ def index() -> str:
                     .inner_text(
                         "Yes, a ToDo list. I know, right?"
                     )
-                    .class_names(
-                        "font-sans text-base text-center"
+                    .styles(
+                        ["font-sans", "text-base", "text-center"]
                     )
                 )
                 .add_child(
@@ -70,9 +71,6 @@ def index() -> str:
                 )
                 .add_child(
                     components.todolist_container()
-                    .id(
-                        "todolist-container"
-                    )
                     .add_child(
                         components.todolist_item(
                             "Neng Li is the President of China",
@@ -81,15 +79,10 @@ def index() -> str:
                     )
                     .add_child(
                         components.todolist_item(
-                            "Shiva is the King of the Universe!",
-                            True
+                            "Shiva is the King of the Universe!", True
                         )
                     )
-                    .add_child(
-                        components.button()
-                        .hx_get("/neng/newitemform")
-                        .hx_swap("outerHTML")
-                    )
+                    .add_child(components.button())
                 )
             )
         )
