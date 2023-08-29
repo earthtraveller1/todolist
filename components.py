@@ -49,10 +49,10 @@ def todolist_container() -> Element:
 def todolist_item(text: str, is_done: bool) -> Element:
     classes = ["rounded-lg", "text-lime-100", "mb-8", "p-4", "select-none"]
     if is_done:
-        classes += [" line-through", "bg-lime-900",
+        classes += ["line-through", "bg-lime-900",
                     "hover:bg-lime-700", "active:bg-lime-950"]
     else:
-        classes += [" bg-indigo-900",
+        classes += ["bg-indigo-900",
                     "hover:bg-indigo-700", "active:bg-indigo-950"]
 
     return\
