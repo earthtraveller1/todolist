@@ -19,7 +19,13 @@ def index() -> str:
                 .add_child(
                     Element("h1")
                     .inner_text("ToDo List")
-                    .styles(["font-sans", "font-bold", "text-center", "text-8xl", "my-8"])
+                    .styles([
+                        "font-sans",
+                        "font-bold",
+                        "text-center",
+                        "text-8xl",
+                        "my-8"
+                    ])
                 )
                 .add_child(
                     Element("p")
@@ -32,8 +38,17 @@ def index() -> str:
                 )
                 .add_child(
                     components.todolist_container()
-                    .add_child(components.todolist_item("Neng Li is the President of China", False))
-                    .add_child(components.todolist_item("Shiva is the King of the Universe!", True))
+                    .add_child(
+                        components.todolist_item(
+                            "Neng Li is the President of China",
+                            False
+                        )
+                    )
+                    .add_child(
+                        components.todolist_item(
+                            "Shiva is the King of the Universe!", True
+                        )
+                    )
                     .add_child(components.button())
                 )
             )
