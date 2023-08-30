@@ -77,7 +77,11 @@ def index() -> str:
                             "Shiva is the King of the Universe!", True
                         )
                     )
-                    .add_child(components.button())
+                    .add_child(
+                        components.button()
+                        .hx_get("/neng/newitemform")
+                        .hx_swap("outerHTML")
+                    )
                 )
             )
         )
