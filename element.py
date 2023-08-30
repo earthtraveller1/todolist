@@ -67,6 +67,10 @@ class Element:
         self.property("hx-swap", swap)
         return self
 
+    def hx_include(self, selector: str) -> 'Element':
+        self.property("hx-include", selector)
+        return self
+
     def add_child(self, child: 'Element') -> 'Element':
         self._children.append(child)
         return self
