@@ -1,4 +1,17 @@
 from element import Element
+import requests
+
+
+def htmx_script() -> Element:
+    source = requests.get("https://unpkg.com/htmx.org@1.9.4")
+    return Element("script")\
+        .raw_inner_text(source.content.decode('utf-8'))
+
+
+def tailwind_script() -> Element:
+    source = requests.get("https://cdn.tailwindcss.com")
+    return Element("script")\
+        .raw_inner_text(source.content.decode('utf-8'))
 
 
 def head(title: str) -> Element:
@@ -15,26 +28,8 @@ def head(title: str) -> Element:
                 "content", "width=device-width, initial-scale=1.0"
             )
         )\
-        .add_child(
-            Element("script")
-            .property("src", "https://cdn.tailwindcss.com")
-        )\
-        .add_child(
-            Element("script")
-            .property(
-                "src",
-                "https://unpkg.com/htmx.org@1.9.4"
-            )
-            .property(
-                "integrity",
-                "sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8V" +
-                "Mus4kHGVdIYVbOYYNlKmHV"
-            )
-            .property(
-                "crossorigin",
-                "anyonymous"
-            )
-        )\
+        .add_child(tailwind_script())\
+        .add_child(htmx_script())\
         .add_child(
             Element("title")
             .inner_text(title)
