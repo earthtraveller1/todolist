@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from element import Element
 import components
 
@@ -106,6 +106,8 @@ def new_item_form() -> str:
 
 @app.route("/shiva/additem", methods=["POST"])
 def add_item() -> str:
+    items.append(request.form["new-item-name"])
+
     return components.button()\
         .hx_get("/neng/newitemform")\
         .hx_swap("outerHTML")\
