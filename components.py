@@ -100,4 +100,3 @@ def create_item_form() -> Element:
         .add_child(
             button("Create")
         )
-
