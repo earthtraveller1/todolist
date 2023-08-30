@@ -46,11 +46,6 @@ def index() -> str:
                     ])
                 )
                 .add_child(
-                    Element("p")
-                    .inner_text("Yes, a ToDo list. I know, right?")
-                    .styles(["font-sans", "text-base", "text-center"])
-                )
-                .add_child(
                     Element(
                         "p"
                     )
