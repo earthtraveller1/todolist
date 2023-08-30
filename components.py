@@ -77,7 +77,7 @@ def button(text: str = "Add Item") -> Element:
         .inner_text(text)
 
 
-def create_item_form() -> Element:
+def create_item_form(button: Element) -> Element:
     return\
         Element("div")\
         .styles(["flex", "justify-item-center", "mx-2"])\
@@ -97,6 +97,4 @@ def create_item_form() -> Element:
             .flag("required")
             .property("minlength", "8")
         )\
-        .add_child(
-            button("Create")
-        )
+        .add_child(button)
