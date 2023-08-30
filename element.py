@@ -79,6 +79,10 @@ class Element:
         self._inner_text = markupsafe.escape(text)
         return self
 
+    def raw_inner_text(self, text: str) -> 'Element':
+        self._inner_text = text
+        return self
+
     def render(self) -> str:
         output = ""
 
