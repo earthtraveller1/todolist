@@ -96,5 +96,6 @@ def create_item_form(button: Element) -> Element:
             .property("type", "text")
             .flag("required")
             .property("minlength", "8")
+            .property("name", "new-item-name")
         )\
         .add_child(button)
