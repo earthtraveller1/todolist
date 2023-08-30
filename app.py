@@ -91,12 +91,15 @@ def index() -> str:
 
 @app.route("/neng/newitemform")
 def new_item_form() -> str:
-    result = components.create_item_form(
-        components.button("Create")
-        .hx_post("/shiva/additem")
-        .hx_swap("outerHTML")
-        .hx_target("#new-item-form")
-    ).id("new-item-form")
+    result = components\
+        .create_item_form(
+            components.button("Create")
+            .hx_post("/shiva/additem")
+            .hx_include("#new-item-form")
+            .hx_swap("outerHTML")
+            .hx_target("#new-item-form")
+        )\
+        .id("new-item-form")\
 
     return result.render()
 
