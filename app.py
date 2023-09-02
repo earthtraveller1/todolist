@@ -121,7 +121,7 @@ def add_item() -> str:
     id = int(time.time_ns() / 1000)
 
     content = escape_sql_string(request.form["new-item-name"])
-    query = f"INSERT INTO items VALUES ({id}, '{content}', true);"
+    query = f"INSERT INTO items VALUES ({id}, '{content}', false);"
     print(query)
     database_cursor.execute(query)
     database_connection.commit()
