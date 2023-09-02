@@ -1,17 +1,16 @@
 from element import Element
-import requests
 
 
 def htmx_script() -> Element:
-    source = requests.get("https://unpkg.com/htmx.org@1.9.4")
+    source = "https://unpkg.com/htmx.org@1.9.4"
     return Element("script")\
-        .raw_inner_text(source.content.decode('utf-8'))
+        .property("src", source)
 
 
 def tailwind_script() -> Element:
-    source = requests.get("https://cdn.tailwindcss.com")
+    source = "https://cdn.tailwindcss.com"
     return Element("script")\
-        .raw_inner_text(source.content.decode('utf-8'))
+        .property("src", source)
 
 
 def head(title: str) -> Element:
