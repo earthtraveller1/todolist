@@ -147,7 +147,7 @@ def init():
 
     table_schema = "(id BIGINT, content VARCHAR(1028), is_completed BOOL)"
     db_cursor.execute(
-        f"CREATE TABLE IF NOT EXISTS item {table_schema}"
+        f"CREATE TABLE IF NOT EXISTS items {table_schema}"
     )
 
     db_connection.commit()
