@@ -139,3 +139,18 @@ def empty_div() -> str:
         .id("test-target")
 
     return result.render()
+
+
+def init():
+    db_connection = sqlite3.connect("todolist.db")
+    db_cursor = db_connection.cursor()
+
+    table_schema = "(id BIGINT, content VARCHAR(1028), is_completed BOOL)"
+    db_cursor.execute(
+        f"CREATE TABLE IF NOT EXISTS item {table_schema}"
+    )
+
+    db_connection.commit()
+
+
+init()
