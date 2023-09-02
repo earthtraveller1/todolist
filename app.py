@@ -1,11 +1,13 @@
 from flask import Flask, request
-from element import Element
+from element import Element, escape_string
 import components
 
-items = [
-    "Neng Li is the President of China",
-    "Shiva Deshpande is the King of the Universe",
-]
+import sqlite3
+
+database_connection = sqlite3.connect("todolist.db")
+database_cursor = database_connection.cursor()
+
+current_id: int = 0
 
 app = Flask(__name__)
 
@@ -106,7 +108,13 @@ def new_item_form() -> str:
 
 @app.route("/shiva/additem", methods=["POST"])
 def add_item() -> str:
-    items.append(request.form["new-item-name"])
+    global current_id
+
+    content = escape_string(request.form["new-item-name"])
+    database_cursor.execute(
+        f"INSERT INTO items VALUES (${current_id}, ${content}, true)"
+    )
+    current_id += 1
 
     return components.button()\
         .hx_get("/neng/newitemform")\
