@@ -1,15 +1,22 @@
-from flask import Flask, request
-from element import Element, escape_string
-import components
-
 import sqlite3
+import time
 
-database_connection = sqlite3.connect("todolist.db")
-database_cursor = database_connection.cursor()
+from flask import Flask, request
 
-current_id: int = 0
+import components
+from element import Element
 
 app = Flask(__name__)
+
+
+def escape_sql_string(query: str) -> str:
+    result = ""
+    for character in query:
+        if character == "'":
+            result += "'"
+        result += character
+
+    return result
 
 
 @app.route("/")
@@ -108,13 +115,16 @@ def new_item_form() -> str:
 
 @app.route("/shiva/additem", methods=["POST"])
 def add_item() -> str:
-    global current_id
+    database_connection = sqlite3.connect("todolist.db")
+    database_cursor = database_connection.cursor()
 
-    content = escape_string(request.form["new-item-name"])
-    database_cursor.execute(
-        f"INSERT INTO items VALUES (${current_id}, ${content}, true)"
-    )
-    current_id += 1
+    id = int(time.time_ns() / 1000)
+
+    content = escape_sql_string(request.form["new-item-name"])
+    query = f"INSERT INTO items VALUES ({id}, '{content}', true);"
+    print(query)
+    database_cursor.execute(query)
+    database_connection.commit()
 
     return components.button()\
         .hx_get("/neng/newitemform")\
