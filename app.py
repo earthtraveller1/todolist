@@ -24,21 +24,13 @@ def index() -> str:
     output =\
         Element()\
         .add_child(
-            Element(
-                "!DOCTYPE"
-            )
-            .flag(
-                "html"
-            )
+            Element("!DOCTYPE")
+            .flag("html")
         )\
         .add_child(
-            Element(
-                "html"
-            )
+            Element("html")
             .add_child(
-                components.head(
-                    "Hello World"
-                )
+                components.head("Hello World")
             )
             .add_child(
                 Element("body")
@@ -55,43 +47,15 @@ def index() -> str:
                     ])
                 )
                 .add_child(
-                    Element(
-                        "p"
-                    )
-                    .inner_text(
-                        "Yes, a ToDo list. I know, right?"
-                    )
-                    .styles(
-                        ["font-sans", "text-base", "text-center"]
-                    )
+                    Element("p")
+                    .inner_text("Yes, a ToDo list. I know, right?")
+                    .styles(["font-sans", "text-base", "text-center"])
                 )
                 .add_child(
-                    Element(
-                        "div"
-                    )
-                    .id(
-                        "test-target"
-                    )
+                    Element("div")
+                    .id("test-target")
                 )
-                .add_child(
-                    components.todolist_container()
-                    .add_child(
-                        components.todolist_item(
-                            "Neng Li is the President of China",
-                            False
-                        )
-                    )
-                    .add_child(
-                        components.todolist_item(
-                            "Shiva is the King of the Universe!", True
-                        )
-                    )
-                    .add_child(
-                        components.button()
-                        .hx_get("/neng/newitemform")
-                        .hx_swap("outerHTML")
-                    )
-                )
+                .add_child(components.todolist())
             )
         )
 

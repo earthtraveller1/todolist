@@ -1,3 +1,6 @@
+import sqlite3
+from typing import Tuple, Optional
+
 from element import Element
 
 
@@ -93,3 +96,24 @@ def create_item_form(button: Element) -> Element:
             .property("name", "new-item-name")
         )\
         .add_child(button)
+
+
+def todolist() -> Element:
+    result = todolist_container()
+
+    db_connection = sqlite3.connect("todolist.db")
+    db_cursor = db_connection.cursor()
+
+    items = db_cursor.execute("SELECT content, is_completed FROM items")
+
+    item: Optional[Tuple[str, bool]]
+    while (item := items.fetchone()) is not None:
+        result.add_child(todolist_item(item[0], item[1]))
+
+    result.add_child(
+        button()
+        .hx_get("/neng/newitemform")
+        .hx_swap("outerHTML")
+    )
+
+    return result
