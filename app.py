@@ -55,7 +55,7 @@ def index() -> str:
                     Element("div")
                     .id("test-target")
                 )
-                .add_child(components.todolist())
+                .add_child(components.todolist().id("todolist"))
             )
         )
 
@@ -70,7 +70,7 @@ def new_item_form() -> str:
             .hx_post("/shiva/additem")
             .hx_include("#new-item-form")
             .hx_swap("outerHTML")
-            .hx_target("#new-item-form")
+            .hx_target("#todolist")
         )\
         .id("new-item-form")\
 
@@ -90,10 +90,7 @@ def add_item() -> str:
     database_cursor.execute(query)
     database_connection.commit()
 
-    return components.button()\
-        .hx_get("/neng/newitemform")\
-        .hx_swap("outerHTML")\
-        .render()
+    return components.todolist().id("todolist").render()
 
 
 @app.route("/neng/empty")
