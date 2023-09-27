@@ -108,3 +108,6 @@ class Element:
             output += f"</{self._name}>"
 
         return output
+
+    def has_children(self) -> bool:
+        return len(self._children) != 0
