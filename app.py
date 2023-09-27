@@ -9,16 +9,6 @@ from element import Element
 app = Flask(__name__)
 
 
-def escape_sql_string(query: str) -> str:
-    result = ""
-    for character in query:
-        if character == "'":
-            result += "'"
-        result += character
-
-    return result
-
-
 @app.route("/")
 def index() -> str:
     output =\
@@ -84,10 +74,9 @@ def add_item() -> str:
 
     id = int(time.time_ns() / 1000)
 
-    content = escape_sql_string(request.form["new-item-name"])
-    query = f"INSERT INTO items VALUES ({id}, '{content}', false);"
-    print(query)
-    database_cursor.execute(query)
+    content = request.form["new-item-name"]
+    database_cursor.execute(
+        "INSERT INTO items VALUES (?, ?, false);", (id, content))
     database_connection.commit()
 
     return components.todolist().id("todolist").render()
