@@ -112,6 +112,21 @@ def todolist() -> Element:
     while (item := items.fetchone()) is not None:
         result.add_child(todolist_item(item[1], item[0], item[2]))
 
+    if not result.has_children():
+        result.add_child(
+            Element("div")
+            .inner_text("You have no items")
+            .styles([
+                "p-4",
+                "mb-8",
+                "bg-cyan-950",
+                "text-gray-400",
+                "select-none",
+                "rounded-xl",
+                "text-center"
+            ])
+        )
+
     result.add_child(
         button()
         .hx_get("/neng/newitemform")
