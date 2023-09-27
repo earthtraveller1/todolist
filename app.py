@@ -89,7 +89,7 @@ def remove_item(item_id: str) -> str:
     database_cursor.execute("DELETE FROM items WHERE id=?", (item_id,))
     database_connection.commit()
 
-    return ""
+    return components.todolist().id("todolist").render()
 
 
 @app.route("/neng/empty")

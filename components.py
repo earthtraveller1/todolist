@@ -58,6 +58,7 @@ def todolist_item(text: str, item_id: str, is_done: bool) -> Element:
         .styles(classes)\
         .hx_delete(f"/shiva/items/{item_id}")\
         .hx_swap("outerHTML")\
+        .hx_target("#todolist")\
         .inner_text(text)
 
 
