@@ -93,6 +93,16 @@ def add_item() -> str:
     return components.todolist().id("todolist").render()
 
 
+@app.route("/shiva/items/<item_id>", methods=["DELETE"])
+def remove_item(item_id: str) -> str:
+    database_connection = sqlite3.connect("todolist.db")
+    database_cursor = database_connection.cursor()
+    database_cursor.execute("DELETE FROM items WHERE id=?", (item_id,))
+    database_connection.commit()
+
+    return ""
+
+
 @app.route("/neng/empty")
 def empty_div() -> str:
     result =\

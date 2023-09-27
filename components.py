@@ -44,7 +44,7 @@ def todolist_container() -> Element:
         .styles(["w-80", "mx-auto", "my-16", "flex", "flex-col"])
 
 
-def todolist_item(text: str, is_done: bool) -> Element:
+def todolist_item(text: str, item_id: str, is_done: bool) -> Element:
     classes = ["rounded-lg", "text-lime-100", "mb-8", "p-4", "select-none"]
     if is_done:
         classes += ["line-through", "bg-lime-900",
@@ -56,6 +56,8 @@ def todolist_item(text: str, is_done: bool) -> Element:
     return\
         Element("div")\
         .styles(classes)\
+        .hx_delete(f"/shiva/items/{item_id}")\
+        .hx_swap("outerHTML")\
         .inner_text(text)
 
 
@@ -104,11 +106,11 @@ def todolist() -> Element:
     db_connection = sqlite3.connect("todolist.db")
     db_cursor = db_connection.cursor()
 
-    items = db_cursor.execute("SELECT content, is_completed FROM items")
+    items = db_cursor.execute("SELECT id, content, is_completed FROM items")
 
-    item: Optional[Tuple[str, bool]]
+    item: Optional[Tuple[str, str, bool]]
     while (item := items.fetchone()) is not None:
-        result.add_child(todolist_item(item[0], item[1]))
+        result.add_child(todolist_item(item[1], item[0], item[2]))
 
     result.add_child(
         button()
