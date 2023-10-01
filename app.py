@@ -2,6 +2,7 @@ import sqlite3
 import time
 
 from flask import Flask, request
+import flask
 
 import components
 from element import Element
@@ -87,6 +88,20 @@ def remove_item(item_id: str) -> str:
     database_connection = sqlite3.connect("todolist.db")
     database_cursor = database_connection.cursor()
     database_cursor.execute("DELETE FROM items WHERE id=?", (item_id,))
+    database_connection.commit()
+
+    return components.todolist().id("todolist").render()
+
+
+@app.route("/shiva/items/<item_id>/mark/<int:as_done>", methods=["POST"])
+def mark_item_as_done(item_id: str, as_done: int) -> str:
+    if as_done != 1 and as_done != 0:
+        flask.abort(400)
+
+    database_connection = sqlite3.connect("todolist.db")
+    database_cursor = database_connection.cursor()
+    database_cursor.execute(
+        "UPDATE items SET is_completed=? WHERE id=?", (as_done, item_id))
     database_connection.commit()
 
     return components.todolist().id("todolist").render()
