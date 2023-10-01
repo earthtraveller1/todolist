@@ -53,13 +53,34 @@ def todolist_item(text: str, item_id: str, is_done: bool) -> Element:
         classes += ["bg-indigo-900",
                     "hover:bg-indigo-700", "active:bg-indigo-950"]
 
+    delete_button_classes = [
+        "rounded-lg",
+        "text-red-100",
+        "bg-red-900",
+        "mb-8",
+        "p-4",
+        "mr-8",
+        "select-none",
+        "hover:bg-red-700",
+        "active:bg-red-950",
+    ]
+
     return\
         Element("div")\
-        .styles(classes)\
-        .hx_delete(f"/shiva/items/{item_id}")\
-        .hx_swap("outerHTML")\
-        .hx_target("#todolist")\
-        .inner_text(text)
+        .styles(["flex"])\
+        .add_child(
+            Element("button")
+            .inner_text("Remove")
+            .styles(delete_button_classes)
+            .hx_delete(f"/shiva/items/{item_id}")
+            .hx_swap("outerHTML")
+            .hx_target("#todolist")
+        )\
+        .add_child(
+            Element("div")
+            .styles(classes)
+            .inner_text(text)
+        )
 
 
 def button(text: str = "Add Item") -> Element:
