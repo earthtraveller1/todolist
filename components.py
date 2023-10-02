@@ -65,6 +65,11 @@ def todolist_item(text: str, item_id: str, is_done: bool) -> Element:
         "active:bg-red-950",
     ]
 
+    if is_done:
+        new_mark = 0
+    else:
+        new_mark = 1
+
     return\
         Element("div")\
         .styles(["flex"])\
@@ -79,6 +84,9 @@ def todolist_item(text: str, item_id: str, is_done: bool) -> Element:
         .add_child(
             Element("div")
             .styles(classes)
+            .hx_post(f"/shiva/items/{item_id}/mark/{new_mark}")
+            .hx_swap("outerHTML")
+            .hx_target("#todolist")
             .inner_text(text)
         )
 
